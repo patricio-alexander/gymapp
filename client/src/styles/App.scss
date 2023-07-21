@@ -1,0 +1,149 @@
+@charset "utf-8";
+// @import "node_modules/bulma-responsive-tables/bulma-responsive-tables";
+// @import "node_modules/bulma/bulma";
+
+$bg-dark-color-1: #1f1e22;
+$bg-dark-color-2: #2b2c30;
+
+// Modal minimal setup
+// $transition-duration: .3s;
+// $transition-duration-newsPaper: .7s;
+// $transition-duration-3dslit: .5s;
+
+// $modal-perspective: 1300px;
+// $modal-bg-color: rgba($black,.86);
+
+$shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+  0 0 0 1px rgba(10, 10, 10, 0.02);
+// $bg-dark-color-3: #313338;
+// $text-color-grey: #dbdbdb;
+// $grey: #3d4046;
+
+// $button-background-color: inherit;
+// $button-border-color: none;
+// $button-hover-border-color: $bg-dark-color-2;
+// $button-focus-border-color:$bg-dark-color-2;
+// $button-active-border-color: $bg-dark-color-2;
+// $button-focus-box-shadow-color: $bg-dark-color-3;
+
+// $red-color:  hsl(348, 100%, 61%);
+// $button-ghost-color: $text-color-grey;
+// $table-background-color: inherit;
+// $button-ghost-decoration: $red-color;
+$table-cell-border: none;
+// $button-ghost-hover-color: $red-color;
+// $button-ghost-hover-decoration: none;
+// // $shadow: 0px 0px 16px 7px rgba(30, 33, 36, 1);
+
+// $button-disabled-background-color: $bg-dark-color-2;
+// $button-disabled-border-color: $bg-dark-color-2;
+// $menu-item-hover-background-color: $bg-dark-color-3;
+// $menu-item-hover-color: $bg-dark-color-3;
+// $input-background-color: $bg-dark-color-3;
+// $input-border-color: $bg-dark-color-3;
+// $input-color: $text-color-grey;
+// $input-hover-border-color: $grey;
+
+.is-rounded {
+  border-radius: 10px;
+}
+
+// .input:-webkit-autofill,
+// .input:-webkit-autofill:focus {
+//   transition: background-color 600000s 0s, color 600000s 0s;
+// }
+
+.is-100vh {
+  height: 100vh;
+}
+
+.is-dark-1 {
+  background-color: $bg-dark-color-1;
+}
+
+.is-dark-2 {
+  background-color: $bg-dark-color-2;
+}
+
+// .is-dark-3 {
+//   background-color: $bg-dark-color-3;
+// }
+
+// .is-borderless {
+//   border: none;
+// }
+
+// .is-active {
+//   animation: modalFadeIn 0.2s forwards;
+//   // animation-delay: 1s;
+// }
+
+// .modal-content {
+//   animation: contentSlideIn 0.2s forwards;
+// }
+
+// .sidebar {
+//   min-height: 100vh;
+// }
+
+.is-shadow {
+  box-shadow: $shadow;
+}
+$button-disabled-border-color: none;
+// .is-shadow {
+//   -webkit-box-shadow: $shadow;
+//   -moz-box-shadow: $shadow;
+//   box-shadow: $shadow;
+// }
+
+.image {
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentSlideIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes contentSlideOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+
+
+
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/elements/button.sass";
+@import "../node_modules/bulma/sass/components/menu.sass";
+@import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/elements/table.sass";
