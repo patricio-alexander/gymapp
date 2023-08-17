@@ -23,7 +23,7 @@ const login = async (req, res) => {
     };
 
     const token = await createAccessToken({ payload });
-    // res.cookie("token", token);
+    res.cookie("token", token);
     res.json({ message: "User auth", token });
     // console.log(await isCorrectPasword);
     // res.json(password);

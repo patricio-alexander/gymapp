@@ -3,11 +3,17 @@ import customerRoutes from "./src/routes/customerRoutes.js";
 import loginRoutes from "./src/routes/authRoutes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import {join} from "path";
+import fileDirName from "./src/file-dir-name.js";
 
 const app = express();
 const PORT = 3000;
+const {__dirname} = fileDirName(import.meta);
 
 app.use("/photos", express.static("customerPhotos"));
+
+// app.use(express.static(join(__dirname, "../client/dist")));
+
 
 // app.use((req, res, next) => {
 //   res.append("Access-Control-Allow-Origin", ["*"]);

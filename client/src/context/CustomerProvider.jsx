@@ -191,13 +191,13 @@ export const CustomerContextProvider = ({ children }) => {
   const prevPage = () => setCurrentPage(currentPage - 1);
 
   const loadCustomers = async () => {
-    try {
+    // try {
       const { data } = await getCustomersRequest(currentPage + 1);
       setCustomers(data.items);
       setTotalPages(data.totalPages);
-    } catch (error) {
-      console.log(error.message);
-    }
+    // } catch (error) {
+    //   console.log(error.message);
+    // }
   };
 
   const searchClient = async () => {
