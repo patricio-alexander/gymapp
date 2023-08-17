@@ -18,6 +18,7 @@ import ModalDialog from "./components/ModalDialog";
 import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NavBar from "./components/Navbar";
+//hola
 
 function App() {
   return (
