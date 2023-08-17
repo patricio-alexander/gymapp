@@ -16,7 +16,6 @@ function CustomerForm() {
     addCustomer,
     updateCustomerData,
     currentPrice,
-    getCurrentPrice,
     file,
     setFile,
   } = useCustomer();
@@ -109,9 +108,7 @@ function CustomerForm() {
     setForm({ ...form, [name]: value });
   };
 
-  useEffect(() => {
-    getCurrentPrice();
-  }, []);
+ 
 
   useEffect(() => {
     formValidation();
@@ -146,49 +143,8 @@ function CustomerForm() {
       <form onSubmit={handleSubmit} className="mt-3">
         <div className="columns">
           <div className="column">
-            {/* <div className="field has-name">
-              <label className="label">Foto</label>
-              <div className="file is-info has-name">
-                <label className="file-label">
-                  <input
-                    className="file-input"
-                    type="file"
-                    name="photo"
-                    onChange={(e) => setFile(e.target.files[0])}
-                  />
-                  <span className="file-cta">
-                    <span className="file-icon">
-                      <FiFilePlus />
-                    </span>
-                    <span className="file-label">
-                      {customerId ? "Cambiar " : "Añadir"}
-                    </span>
-                  </span>
-                  <span className="file-name">
-                    {file ? file.name : "Ninguna foto cargada"}
-                  </span>
-                </label>
-              </div>
-            </div> */}
-            {/* <div className="field">
-              <div className="field-label">
-                <label htmlFor="file" className="label">
-                  Imagen:
-                </label>
-              </div>
-              <div className="field-body is-flex is-align-items-center">
-                <label htmlFor="file">
-                  <FiUpload className="is-clickable" />
-                </label>
-                <input
-                  type="file"
-                  id="file"
-                  style={{ display: "none" }}
-                  onChange={(e) => setFile(e.target.files[0])}
-                />
-              </div>
-              
-            </div> */}
+           
+            
 
             <div className="field">
               <label className="label">Imagen</label>

@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import {
   FiChevronLeft,
   FiChevronRight,
@@ -12,8 +11,8 @@ import {
 } from "react-icons/fi";
 import { useEffect } from "react";
 import { useCustomer } from "../context/CustomerProvider";
+import { checkExpiration } from "../helpers/date";
 function ClientTables() {
-  const { isAuthenticated } = useAuth();
   const {
     customers,
     currentPage,
@@ -28,13 +27,17 @@ function ClientTables() {
     setForm,
     setFile,
     showCustomerCard,
+    getCurrentPrice,
     currentPrice,
   } = useCustomer();
 
   useEffect(() => {
     setForm(initialStateForm);
-
     setFile("");
+  }, []);
+
+  useEffect(() => {
+    getCurrentPrice();
   }, []);
 
   useEffect(() => {
@@ -45,7 +48,7 @@ function ClientTables() {
     "Cliente",
     "Cédula",
     "Monto",
-    "Duración",
+    "Estado",
     "Descripción",
     "Acciones",
   ];
@@ -133,50 +136,64 @@ function ClientTables() {
               </thead>
 
               <tbody>
-                {customers.map((customer) => (
-                  <tr key={customer.customerId}>
-                    <td>{customer.fullname}</td>
-                    <td>{customer.dni}</td>
-                    <td>{customer.amount}$</td>
-                    <td>{customer.duration} días</td>
-                    <td>
-                      {customer.amount >= currentPrice ? (
-                        <span className="tag is-success is-light is-normal is-size-6">
-                          Pagado
+                {customers.map((customer) => {
+                  const { expired, remainingTime, elapsedAfterExpiration } =
+                    checkExpiration(customer.endingDate);
+                  return (
+                    <tr key={customer.customerId}>
+                      <td>{customer.fullname}</td>
+                      <td>{customer.dni}</td>
+                      <td>{customer.amount}$</td>
+                      <td>
+                        {customer.amount >= currentPrice ? (
+                          <span className="tag is-success is-light is-normal is-size-6">
+                            Pagado
+                          </span>
+                        ) : (
+                          <span className="tag is-warning is-light is-normal is-size-6">
+                            Debe {currentPrice - customer.amount} $
+                          </span>
+                        )}
+                      </td>
+                      <td>
+                        {expired ? (
+                          <span className="tag is-warning is-light is-normal is-size-6">
+                            {elapsedAfterExpiration}
+                          </span>
+                        ) : (
+                          <span className="tag is-success is-light is-normal is-size-6">
+                            {remainingTime}
+                          </span>
+                        )}
+                      </td>
+
+                      <td className="is-flex  is-align-items-center">
+                        <span
+                          className="icon has-text-danger is-size-5 is-clickable"
+                          onClick={() => iWantRemoveCustomer(customer)}
+                        >
+                          <FiTrash2 />
                         </span>
-                      ) : (
-                        <span className="tag is-warning is-light is-normal is-size-6">
-                          Debe {currentPrice - customer.amount} $
+
+                        <span
+                          className="icon has-text-warning is-size-5 is-clickable ml-3"
+                          onClick={() =>
+                            navigate(`/cliente/editar/${customer.customerId}`)
+                          }
+                        >
+                          <FiEdit />
                         </span>
-                      )}
-                    </td>
 
-                    <td className="is-flex  is-align-items-center">
-                      <span
-                        className="icon has-text-danger is-size-5 is-clickable"
-                        onClick={() => iWantRemoveCustomer(customer)}
-                      >
-                        <FiTrash2 />
-                      </span>
-
-                      <span
-                        className="icon has-text-warning is-size-5 is-clickable ml-3"
-                        onClick={() =>
-                          navigate(`/cliente/editar/${customer.customerId}`)
-                        }
-                      >
-                        <FiEdit />
-                      </span>
-
-                      <span
-                        className="icon has-text-info is-size-5 is-clickable ml-3"
-                        onClick={() => showCustomerCard(customer)}
-                      >
-                        <FiEye />
-                      </span>
-                    </td>
-                  </tr>
-                ))}
+                        <span
+                          className="icon has-text-info is-size-5 is-clickable ml-3"
+                          onClick={() => showCustomerCard(customer)}
+                        >
+                          <FiEye />
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

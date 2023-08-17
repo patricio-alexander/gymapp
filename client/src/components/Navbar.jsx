@@ -16,13 +16,13 @@ function NavBar() {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <a className="navbar-item" href="https://bulma.io">
+        {/* <a className="navbar-item" href="https://bulma.io">
           <img
             src="https://bulma.io/images/bulma-logo.png"
             width="112"
             height="28"
           />
-        </a>
+        </a> */}
 
         <a
           onClick={() => setActive(!isActive)}
@@ -43,11 +43,11 @@ function NavBar() {
         className={`navbar-menu ${isActive ? "is-active" : ""}`}
       >
         <div className="navbar-start">
-          <a className="navbar-item">Home</a>
+          {/* <a className="navbar-item">Home</a> */}
 
-          <a className="navbar-item">Documentation</a>
+          {/* <a className="navbar-item">Documentation</a> */}
 
-          <div className="navbar-item has-dropdown is-hoverable">
+          {/* <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link">More</a>
 
             <div className="navbar-dropdown">
@@ -57,13 +57,13 @@ function NavBar() {
               <hr className="navbar-divider" />
               <a className="navbar-item">Report an issue</a>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <Link to="/login" onClick={() => logout()}>
+              <Link to="/" onClick={() => logout()}>
                 <button className="button is-link">
                   <span className="icon">
                     <i className="fab fa-github"></i>

@@ -7,6 +7,14 @@ function CustomerCard() {
 
   const [photoUrl, setPhotoUrl] = useState(null);
 
+  const formatDate = (date) => {
+    const completeDate = new Date(date);
+    const day = completeDate.getDate().toString().padStart(2, "0");
+    const month = (completeDate.getMonth() + 1).toString().padStart(2, "0");
+    const year = completeDate.getFullYear().toString();
+    return `${day}/${month}/${year}`;
+  };
+
   useEffect(() => {
     setPhotoUrl(`http://localhost:3000/photos/${customer.photo}`);
     // console.log(customer);
@@ -65,12 +73,13 @@ function CustomerCard() {
             <div className="box has-background-light is-flex is-flex-direction-column">
               <div className="mb-2">
                 <p>
-                  <strong>Fecha de pago</strong>: {customer.startDate}
+                  <strong>Fecha de pago</strong>:{" "}
+                  {formatDate(customer.startDate)}
                 </p>
               </div>
               <div className="mb-2">
                 <p>
-                  <strong>Expiración</strong>: {customer.endingDate}
+                  <strong>Expiración</strong>: {formatDate(customer.endingDate)}
                 </p>
               </div>
               <div className="mb-2">

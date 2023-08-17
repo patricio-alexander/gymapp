@@ -7,10 +7,13 @@ const login = async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await userFound({ username });
+    
     if (!user) {
       return res.status(400).json({ message: "Datos incorrectos" });
     }
-    const isCorrectPasword = bcrypt.compare(password, user.password);
+    
+    
+    const isCorrectPasword = await bcrypt.compare(password, user.password);
     if (!isCorrectPasword) {
       return res.status(400).json({ message: "Datos incorrectos" });
     }
@@ -20,8 +23,10 @@ const login = async (req, res) => {
     };
 
     const token = await createAccessToken({ payload });
-    res.cookie("token", token);
+    // res.cookie("token", token);
     res.json({ message: "User auth", token });
+    // console.log(await isCorrectPasword);
+    // res.json(password);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
