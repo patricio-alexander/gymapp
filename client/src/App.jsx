@@ -31,7 +31,7 @@ function App() {
           <CustomerCard />
           <main className="hero  is-fullheight-with-navbar">
             <Routes>
-              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<Login />} />
 
               <Route element={<ProtectedRoute />}>
                 <Route path="/clientes" element={<ClientTables />} />
