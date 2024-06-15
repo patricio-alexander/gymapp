@@ -2,11 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import {
   getCustomersRequest,
   removeCustomerRequest,
-  searchCustomerRequest,
+  // searchCustomerRequest,
   getOneCustomerRequest,
   updataCustomerDataRequest,
   addCustomerRequest,
   getCurrentPriceRequest,
+  getCustomers,
 } from "../api/clients_api";
 
 import { createContext } from "react";
@@ -50,12 +51,13 @@ export const CustomerContextProvider = ({ children }) => {
   const [notification, setNotification] = useState({ message: "", type: "" });
   const [showDialog, setShowDialog] = useState(false);
   const [showCard, setShowCard] = useState(false);
+  const [showModalPrice, setShowModalPrice] = useState(false);
 
   const iWantRemoveCustomer = (customer) => {
     setShowDialog(true);
     setNotification({
-      message: `¿Desea elminar a ${customer.fullname}?`,
-      type: "warning",
+      message: `¿Desea eliminar a ${customer.fullname}?`,
+      type: "danger",
     });
     setRemoveCustomerDni(customer.customerId);
   };
@@ -64,6 +66,9 @@ export const CustomerContextProvider = ({ children }) => {
     setShowCard(true);
     setCustomer(customer);
   };
+
+  const showModalChangePrice = () => setShowModalPrice(true);
+  const hiddenModalChangePrice = () => setShowModalPrice(false);
 
   const hiddenCustomerCard = () => setShowCard(false);
 
@@ -192,7 +197,7 @@ export const CustomerContextProvider = ({ children }) => {
 
   const loadCustomers = async () => {
     try {
-      const { data } = await getCustomersRequest(currentPage + 1);
+      const { data } = await getCustomers();
       setCustomers(data.items);
       setTotalPages(data.totalPages);
     } catch (error) {
@@ -201,7 +206,7 @@ export const CustomerContextProvider = ({ children }) => {
   };
 
   const searchClient = async () => {
-    const { data } = await searchCustomerRequest(search, currentPage + 1);
+    const { data } = await getCustomers();
     setCurrentPage(0);
     setCustomers(data.items);
     setTotalPages(data.totalPages);
@@ -210,8 +215,6 @@ export const CustomerContextProvider = ({ children }) => {
   const fetchClients = () => {
     !search ? loadCustomers() : searchClient();
   };
-
-
 
   return (
     <CustomerContext.Provider
@@ -243,6 +246,9 @@ export const CustomerContextProvider = ({ children }) => {
         showDialog,
         customer,
         getCurrentPrice,
+        showModalChangePrice,
+        hiddenModalChangePrice,
+        showModalPrice,
       }}
     >
       {children}

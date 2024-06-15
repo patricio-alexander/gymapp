@@ -59,6 +59,6 @@ export const checkExpiration = (expirationDate) => {
       elapsedDaysAfterExpiration !== 1 ? "s" : ""
     }`;
   }
-  console.log({ expired, remainingTime, elapsedAfterExpiration })
+  // console.log({ expired, remainingTime, elapsedAfterExpiration })
   return { expired, remainingTime, elapsedAfterExpiration };
 };

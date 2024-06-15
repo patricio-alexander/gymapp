@@ -5,8 +5,6 @@ import {
   updateCustomerInDB,
   searchCustomerInDB,
   getOneCustomerFromDb,
-  getCurrentPriceFromDb
-  
 } from "../database/db.js";
 
 const serviceAddCustomer = async (customerData) => {
@@ -14,23 +12,18 @@ const serviceAddCustomer = async (customerData) => {
   return customer;
 };
 
-const serviceGetCurrentPrice = async () => {
-  const currenPrice = await getCurrentPriceFromDb();
-  return currenPrice;
-}
-
 const serviceGetOneCustomer = async (customerId) => {
   const customer = await getOneCustomerFromDb(customerId);
-  return customer; 
-}
+  return customer;
+};
 
 const serviceSearchCustomer = async (search, page, limit) => {
   const customerFound = await searchCustomerInDB(search, page, limit);
   return customerFound;
 };
 
-const serviceGetAllCustomers = async (page, limit) => {
-  const customer = await getAllCustomersDB(page, limit);
+const serviceGetAllCustomers = async () => {
+  const customer = await getAllCustomersDB();
   return customer;
 };
 
@@ -51,5 +44,4 @@ export {
   serviceDeleteCustomer,
   serviceSearchCustomer,
   serviceGetOneCustomer,
-  serviceGetCurrentPrice
 };

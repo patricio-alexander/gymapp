@@ -7,7 +7,10 @@ const login = async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await userFound({ username });
-    
+   
+    // const pass = await bcrypt.hash("#ironfitness.#", 10);
+    // console.log(pass);
+
     if (!user) {
       return res.status(400).json({ message: "Datos incorrectos" });
     }

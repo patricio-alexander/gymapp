@@ -37,8 +37,8 @@ function CustomerCard() {
           <div className="card-content">
             <div className="media">
               <div className="media-left">
-                <figure className="image">
-                  <img src={photoUrl} alt="Placeholder image" />
+                <figure className="image is-128x128">
+                  <img src={photoUrl} className="is-rounded"  alt="Placeholder image" />
                 </figure>
               </div>
 

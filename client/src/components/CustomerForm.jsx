@@ -108,8 +108,6 @@ function CustomerForm() {
     setForm({ ...form, [name]: value });
   };
 
- 
-
   useEffect(() => {
     formValidation();
     formatDate(form.startDate);
@@ -143,9 +141,6 @@ function CustomerForm() {
       <form onSubmit={handleSubmit} className="mt-3">
         <div className="columns">
           <div className="column">
-           
-            
-
             <div className="field">
               <label className="label">Imagen</label>
               <div className="control">
@@ -286,8 +281,8 @@ function CustomerForm() {
 
           <div className="column">
             <div className="field is-flex is-align-items-center is-justify-content-center">
-              <figure className="image">
-                <img src={imageUrl} />
+              <figure className="image is-128x128">
+                <img src={imageUrl} className="is-rounded" />
               </figure>
             </div>
           </div>

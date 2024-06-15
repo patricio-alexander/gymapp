@@ -8,7 +8,7 @@ function ProtectedRoute() {
 // if (isLoading) return <h1>Cargando...</h1>
 
   if (!isLoading && !isAuthenticated) {
-    return <Navigate to={"/login"} replace />;
+    return <Navigate to={"/"} replace />;
   }
   return <Outlet />;
 }

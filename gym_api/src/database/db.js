@@ -7,18 +7,10 @@ const connection = pool.createPool({
   database: "ironFitness",
 });
 
-const getAllCustomersDB = async (page, limit) => {
-  const skips = (page - 1) * limit;
-  const [totalCustomersArray] = await connection.query(
-    "SELECT COUNT(customerId) AS totalCustomers FROM customers"
-  );
-  const [customerData] = await connection.query(
-    "SELECT * FROM customers LIMIT ?, ?",
-    [skips, limit]
-  );
-  const totalCustomers = totalCustomersArray[0].totalCustomers;
-  const totalPages = Math.ceil(totalCustomers / limit);
-  return { totalPages, totalCustomers, items: customerData };
+const getAllCustomersDB = async () => {
+  const [customerData] = await connection.query("SELECT * FROM customers");
+
+  return { items: customerData };
 };
 
 const getOneCustomerFromDb = async (customerId) => {
@@ -34,6 +26,14 @@ const getCurrentPriceFromDb = async () => {
     "SELECT currentPrice FROM price"
   );
   return currentPrice;
+};
+
+const changePriceInDb = async ({ price }) => {
+  const [rows] = await connection.query(
+    "UPDATE price SET currentPrice = ? WHERE id = 1",
+    [price]
+  );
+  return rows;
 };
 
 const userFound = async ({ username }) => {
@@ -152,4 +152,5 @@ export {
   getOneCustomerFromDb,
   getCurrentPriceFromDb,
   userFound,
+  changePriceInDb,
 };

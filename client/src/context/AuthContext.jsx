@@ -14,16 +14,16 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  //   const [user, setUser] = useState(null);
   const [errors, setErrors] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
- 
-
   const signin = async (user) => {
     try {
       const res = await loginRequest(user);
+      // const { data } = res;
+
+      // Cookies.set("token", data.token);
       if (res.status === 200) {
         setIsAuthenticated(true);
       }
@@ -67,7 +67,6 @@ export const AuthProvider = ({ children }) => {
     };
     checkLogin();
   }, []);
- 
 
   return (
     <AuthContext.Provider

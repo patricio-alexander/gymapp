@@ -1,5 +1,5 @@
 import { useCustomer } from "../context/CustomerProvider";
-import { FiTrash2, FiX } from "react-icons/fi";
+import { FiTrash2, FiUserMinus, FiX } from "react-icons/fi";
 
 function ModalDialog() {
   const {
@@ -12,26 +12,34 @@ function ModalDialog() {
   return (
     <div className={`modal modal-fx-slideTop ${showDialog ? "is-active" : ""}`}>
       <div className="modal-background" onClick={hiddenModalDialog}></div>
-      <button className="modal-close is-large" aria-label="close" onClick={hiddenModalDialog}></button>
+      <button
+        className="modal-close is-large"
+        aria-label="close"
+        onClick={hiddenModalDialog}
+      ></button>
       <div className="modal-content">
-        <div className={`box notification is-${type} is-light`}>
-         
+        <div className={`box notification is-light`}>
           <div className="media">
-            {/* <div className="media-left">
-              <figure className="image">
-                <img
-                  src="https://bulma.io/images/placeholders/128x128.png"
-                  alt="Image"
-                />
-              </figure>
-            </div> */}
             <div className="media-content">
-              <div className="content">
-                <p className="is-size-5">{message}</p>
+              <div className="is-flex is-justify-content-center is-align-items-center is-flex-direction-column">
+                <span
+                  className={`icon ${type === "danger" ? "has-text-danger" : ""}`}
+                >
+                  <FiUserMinus size={50} />
+                </span>
+                <div className="content m-3">
+                  <p
+                    className={`is-size-5 ${
+                      type === "danger" ? "has-text-danger" : ""
+                    }`}
+                  >
+                    {message}
+                  </p>
+                </div>
               </div>
-              <div className="buttons">
+              <div className="buttons is-flex is-justify-content-center">
                 <button
-                  className="button is-danger is-outlined"
+                  className="button is-danger is-outlined is-fullwidth"
                   onClick={removeCustomer}
                 >
                   <span className="icon is-small">
@@ -41,7 +49,7 @@ function ModalDialog() {
                 </button>
 
                 <button
-                  className="button is-info is-outlined"
+                  className="button is-info is-outlined is-fullwidth"
                   onClick={hiddenModalDialog}
                 >
                   <span className="icon is-small">

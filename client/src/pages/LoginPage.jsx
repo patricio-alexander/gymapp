@@ -12,7 +12,6 @@ function Login() {
 
     const data = Object.fromEntries(new FormData(event.target));
     signin(data);
-
   };
 
   useEffect(() => {
@@ -22,7 +21,7 @@ function Login() {
   }, [isAuthenticated]);
 
   return (
-    <section className="hero is-fullheight is-dark-1">
+    <section className="hero is-fullheight is-danger">
       <div className="hero-body">
         <div className="container">
           <div className="columns is-centered">
@@ -32,13 +31,18 @@ function Login() {
                 className="box animate__animated animate__fadeInDown"
                 onSubmit={submitHandler}
               >
+                <div className="is-flex is-align-items-center is-justify-content-center mb-5">
+                  <figure className="image is-64x64 is-flex is-align-items-center is-justify-content-center">
+                    <img src="./logo.svg" />
+                  </figure>
+                </div>
+
                 {errors.message ? (
-                  <div className="notification is-danger">
-                    {errors.message}
-                  </div>
+                  <div className="notification is-danger">{errors.message}</div>
                 ) : (
                   ""
                 )}
+
                 <div className="field">
                   <label className="label">Usuario</label>
                   <div className="control has-icons-left">
@@ -71,7 +75,7 @@ function Login() {
                 </div>
 
                 <div className="field">
-                  <button className="button is-success">Entrar</button>
+                  <button className="button is-link">Entrar</button>
                 </div>
               </form>
             </div>

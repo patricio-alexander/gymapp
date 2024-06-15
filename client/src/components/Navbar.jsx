@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BiExit } from "react-icons/bi";
+import { FiUser } from "react-icons/fi";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
@@ -10,68 +11,48 @@ function NavBar() {
   return !isAuthenticated ? (
     ""
   ) : (
-    <nav
-      className="navbar is-shadow"
-      role="navigation"
-      aria-label="main navigation"
-    >
+    <nav className="navbar is-transparent">
       <div className="navbar-brand">
-        {/* <a className="navbar-item" href="https://bulma.io">
-          <img
-            src="https://bulma.io/images/bulma-logo.png"
-            width="112"
-            height="28"
-          />
-        </a> */}
-
-        <a
+        <div
+          data-target="navbarExampleTransparentExample"
           onClick={() => setActive(!isActive)}
-          role="button"
           className={`navbar-burger ${isActive ? "is-active" : ""}`}
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample"
         >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
 
       <div
-        id="navbarBasicExample"
+        id="navbarExampleTransparentExample"
         className={`navbar-menu ${isActive ? "is-active" : ""}`}
       >
         <div className="navbar-start">
-          {/* <a className="navbar-item">Home</a> */}
-
-          {/* <a className="navbar-item">Documentation</a> */}
-
-          {/* <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">More</a>
-
-            <div className="navbar-dropdown">
-              <a className="navbar-item">About</a>
-              <a className="navbar-item">Jobs</a>
-              <a className="navbar-item">Contact</a>
-              <hr className="navbar-divider" />
-              <a className="navbar-item">Report an issue</a>
-            </div>
-          </div> */}
+          <Link to="/clientes" className="navbar-item">
+            <span className="icon-text">
+              <span className="icon">
+                <FiUser />
+              </span>
+              <span>Clientes</span>
+            </span>
+          </Link>
         </div>
 
         <div className="navbar-end">
           <div className="navbar-item">
-            <div className="buttons">
-              <Link to="/" onClick={() => logout()}>
-                <button className="button is-link">
-                  <span className="icon">
-                    <i className="fab fa-github"></i>
-                    <BiExit />
-                  </span>
-                  <span>Salir</span>
-                </button>
-              </Link>
+            <div className="field is-grouped">
+              <p className="control">
+                <Link to="/" onClick={() => logout()}>
+                  <button className="button is-link">
+                    <span className="icon">
+                      <i className="fab fa-github"></i>
+                      <BiExit />
+                    </span>
+                    <span>Salir</span>
+                  </button>
+                </Link>
+              </p>
             </div>
           </div>
         </div>

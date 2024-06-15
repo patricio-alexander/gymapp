@@ -5,7 +5,6 @@ import {
   serviceDeleteCustomer,
   serviceSearchCustomer,
   serviceGetOneCustomer,
-  serviceGetCurrentPrice,
 } from "../services/clientService.js";
 
 // import { unlink, readdir } from "fs/promises";
@@ -26,10 +25,7 @@ const searchCustomer = async (req, res) => {
   res.json(customerFound);
 };
 
-const currentPrice = async (req, res) => {
-  const currenPrice = await serviceGetCurrentPrice();
-  res.json(currenPrice);
-};
+
 
 const getOneCustomer = async (req, res) => {
   const customer = await serviceGetOneCustomer(req.params.customerId);
@@ -37,12 +33,8 @@ const getOneCustomer = async (req, res) => {
 };
 
 const getAllCustomers = async (req, res) => {
-  const { page, limit } = req.query;
 
-  const data = await serviceGetAllCustomers(
-    parseInt(page, 10),
-    parseInt(limit, 10)
-  );
+  const data = await serviceGetAllCustomers( );
   // console.log(page, limit);
   res.json(data);
 };
@@ -79,5 +71,4 @@ export {
   deleteCustomer,
   searchCustomer,
   getOneCustomer,
-  currentPrice
 };
